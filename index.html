@@ -15,20 +15,146 @@
   <link rel="stylesheet" href="css/flaticon.css">
   <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      padding-top: 70px;
+    }
+    section {
+      scroll-margin-top: 75px;
+    }
+    /* Fixed Sticky Navbar at Top */
+    #ftco-navbar {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.95) !important;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(240, 198, 10, 0.25);
+      padding: 12px 0 !important;
+      transition: all 0.3s ease;
+    }
+    #ftco-navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    #ftco-navbar .navbar-brand {
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 20px;
+      white-space: nowrap;
+      margin-right: 10px;
+      padding: 0;
+    }
+    #ftco-navbar .navbar-toggler {
+      border: 1.5px solid #f0c60a !important;
+      color: #f0c60a !important;
+      background: rgba(240, 198, 10, 0.08);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      outline: none !important;
+      transition: all 0.25s ease;
+      display: none;
+      align-items: center;
+      gap: 6px;
+    }
+    #ftco-navbar .navbar-toggler:hover,
+    #ftco-navbar .navbar-toggler[aria-expanded="true"] {
+      background: #f0c60a;
+      color: #000 !important;
+    }
+    #ftco-navbar .navbar-nav .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: color 0.25s ease, background 0.25s ease, padding-left 0.25s ease;
+    }
+    #ftco-navbar .navbar-nav .nav-link:hover,
+    #ftco-navbar .navbar-nav .nav-link.active-link {
+      color: #f0c60a !important;
+    }
+    /* Mobile Responsive Menu Styling */
+    @media (max-width: 991.98px) {
+      #ftco-navbar .navbar-brand {
+        font-size: 18px;
+      }
+      #ftco-navbar .navbar-toggler {
+        display: inline-flex;
+      }
+      #ftco-nav {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.25s ease;
+        background: #111;
+        border-radius: 12px;
+        margin-top: 0;
+        border: 1px solid transparent;
+      }
+      #ftco-nav.show {
+        display: block !important;
+        max-height: 420px;
+        opacity: 1;
+        margin-top: 12px;
+        padding: 8px 12px;
+        border-color: rgba(240, 198, 10, 0.3);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+      }
+      #ftco-navbar .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #ftco-navbar .navbar-nav .nav-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        width: 100%;
+      }
+      #ftco-navbar .navbar-nav .nav-item:last-child {
+        border-bottom: none;
+      }
+      #ftco-navbar .navbar-nav .nav-link {
+        display: block;
+        padding: 11px 12px !important;
+        font-size: 16px;
+        border-radius: 8px;
+      }
+      #ftco-navbar .navbar-nav .nav-link:hover,
+      #ftco-navbar .navbar-nav .nav-link.active-link {
+        background: rgba(240, 198, 10, 0.12);
+        color: #f0c60a !important;
+        padding-left: 18px !important;
+      }
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Yashbir Singh Rawat</a>
+    <a class="navbar-brand" href="#home-section">Yashbir Singh Rawat</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="oi oi-menu"></span> Menu
+      <span id="menu-icon">☰</span> <span id="menu-text">Menu</span>
     </button>
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav nav ml-auto">
-        <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-        <!-- <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li> -->
+        <li class="nav-item"><a href="#home-section" class="nav-link active-link"><span>Home</span></a></li>
+        <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
         <li class="nav-item"><a href="#experience-section" class="nav-link"><span>Experience</span></a></li>
         <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
         <li class="nav-item"><a href="#education-section" class="nav-link"><span>Education</span></a></li>
@@ -192,24 +318,61 @@
   </ul>
 </section>
 
-<!-- Mobile Navbar Toggle Script -->
+<!-- Interactive Sticky Navbar & Mobile Menu Script -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var toggler = document.querySelector('.navbar-toggler');
     var navCollapse = document.getElementById('ftco-nav');
+    var menuIcon = document.getElementById('menu-icon');
+    var menuText = document.getElementById('menu-text');
+    var navLinks = document.querySelectorAll('#ftco-nav .nav-link');
+    var sections = document.querySelectorAll('section[id]');
+
+    function closeMenu() {
+      if (!navCollapse || !toggler) return;
+      navCollapse.classList.remove('show');
+      toggler.setAttribute('aria-expanded', 'false');
+      if (menuIcon) menuIcon.textContent = '☰';
+      if (menuText) menuText.textContent = 'Menu';
+    }
+
     if (toggler && navCollapse) {
-      toggler.addEventListener('click', function () {
+      toggler.addEventListener('click', function (e) {
+        e.stopPropagation();
         var isOpen = navCollapse.classList.toggle('show');
         toggler.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (menuIcon) menuIcon.textContent = isOpen ? '✕' : '☰';
+        if (menuText) menuText.textContent = isOpen ? 'Close' : 'Menu';
       });
-      var navLinks = navCollapse.querySelectorAll('.nav-link');
+
       navLinks.forEach(function (link) {
         link.addEventListener('click', function () {
-          navCollapse.classList.remove('show');
-          toggler.setAttribute('aria-expanded', 'false');
+          navLinks.forEach(function (l) { l.classList.remove('active-link'); });
+          link.classList.add('active-link');
+          closeMenu();
         });
       });
+
+      document.addEventListener('click', function (e) {
+        if (navCollapse.classList.contains('show') && !navCollapse.contains(e.target) && !toggler.contains(e.target)) {
+          closeMenu();
+        }
+      });
     }
+
+    window.addEventListener('scroll', function () {
+      var scrollPos = window.scrollY + 120;
+      sections.forEach(function (sec) {
+        var top = sec.offsetTop;
+        var height = sec.offsetHeight;
+        var id = sec.getAttribute('id');
+        if (scrollPos >= top && scrollPos < top + height) {
+          navLinks.forEach(function (link) {
+            link.classList.toggle('active-link', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    });
   });
 </script>
 
